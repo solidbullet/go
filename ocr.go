@@ -13,7 +13,6 @@ import (
 )
 
 const base64Table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-
 var coder = base64.NewEncoding(base64Table)
 
 //"github.com/go-vgo/robotgo"
@@ -52,15 +51,13 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	//fmt.Printf("url:%s,Data as string: %s\n", url, Base64Encode(data))
+
 	httpPost(url_token, Base64Encode(data))
 
 }
 
 func httpPost(myurl string, base64img []byte) {
 
-	//	postbody := "image_type=BASE64&group_id=group001&user_id=0001&image="
-	//	postbody += string(base64img)
 	postValue := url.Values{
 		"image_type": {"BASE64"},
 		"group_id":   {"group001"},
@@ -79,16 +76,6 @@ func httpPost(myurl string, base64img []byte) {
 	nums := getValue(string(body))
 	fmt.Println(nums)
 
-	//	result, _ := str2Map(string(body)) //百度返回的字符串转换为json格式
-	//	word_result := result["words_result"]
-
-	//	fmt.Println(word_result)
-	//	for i, v := range word_result1 {
-
-	//		fmt.Println(i, v)
-	//	}
-
-	//print_json(result)
 }
 
 func str2Map(jsonData string) (result map[string]interface{}, err error) {
@@ -107,31 +94,7 @@ func Base64Encode(encode_byte []byte) []byte {
 	return []byte(coder.EncodeToString(encode_byte))
 }
 
-func print_json(m map[string]interface{}) {
-	for k, v := range m {
-		switch vv := v.(type) {
-		case string:
-			fmt.Println(k, "is string", vv)
-		case float64:
-			fmt.Println(k, "is float", int64(vv))
-		case int:
-			fmt.Println(k, "is int", vv)
-		case []interface{}:
-			fmt.Println(k, "is an array:")
-			for i, u := range vv {
 
-				fmt.Println(i, u)
-			}
-		case nil:
-			fmt.Println(k, "is nil", "null")
-		case map[string]interface{}:
-			fmt.Println(k, "is an map:")
-			print_json(vv)
-		default:
-			fmt.Println(k, "is of a type I don't know how to handle ", fmt.Sprintf("%T", v))
-		}
-	}
-}
 func typeof(v interface{}) string {
 	return fmt.Sprintf("%T", v)
 }
