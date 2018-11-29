@@ -56,7 +56,7 @@ func mt4(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		fmt.Println("connect to redis err", err.Error())
 	}
-	c.Do("AUTH", "810302")
+	c.Do("AUTH", "password")
 	//c.Do("SADD", "mt5", post)
 	//len, _ := c.Do("SCARD", "mt5")
 
