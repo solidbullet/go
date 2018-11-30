@@ -7,4 +7,13 @@
 	var s Serverslice   
 	str := `{"servers":[{"serverName":"SH_VPN","serverIP":"127.0.0.1"},{"serverName":"BJ_VPN","serverIP":"127.0.0.2"}]}`    
 	json.Unmarshal([]byte(str), &s)     
-	fmt.Println(s)     	
+	fmt.Println(s)     
+
+#定时器:
+	ticker := time.NewTicker(time.Millisecond * 1000)  
+	go func() {  
+		for t := range ticker.C {  
+			//以下每隔一段时间读取redis  
+			fmt.Println(t)  
+		}  
+	}()  	
