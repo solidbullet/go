@@ -17,3 +17,12 @@
 			fmt.Println(t)  
 		}  
 	}()  	
+	
+#解析get及post请求  
+	err := req.ParseForm()  
+	if err != nil {  
+		panic(err)  
+	}  
+	accountid := req.Form.Get("accountid")  
+	  
+	body, err := ioutil.ReadAll(req.Body)  //post请求  
